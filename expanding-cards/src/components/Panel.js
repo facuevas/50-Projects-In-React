@@ -10,7 +10,6 @@ const Panel = ({ imageURL, title, panelState }) => {
   // when the div is clicked, updatePanelActive
   const updatePanelActive = () => {
     setPanelActive(!panelActive);
-    console.log(panelActive);
   };
 
   return (
