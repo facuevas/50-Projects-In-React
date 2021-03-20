@@ -1,10 +1,11 @@
-import { React, useState } from "react";
+import { React } from "react";
 
 //CSS imports
 import "./PanelContainer.css";
 
 // Components imports
 import Panel from "./Panel";
+import "./Panel.css";
 
 const panels = [
   {
@@ -40,26 +41,28 @@ const panels = [
 ];
 
 const PanelContainer = () => {
-  const [panelState, setPanelState] = useState(panels);
-
-  const updatePanels = () => {
-    setPanelState(panels);
+  const updatePanels = (e) => {
+    const panelsDiv = document.querySelectorAll(".panel");
+    panelsDiv.forEach((panelDiv) => {
+      panelDiv.classList.remove("active");
+    });
+    e.target.classList.add("active");
   };
 
-  useState(() => {}, [updatePanels]);
   return (
-    <div className="panel-container" onClick={updatePanels}>
-      {panelState &&
-        panels.map((panel, index) => {
-          return (
-            <Panel
-              key={index}
-              imageURL={panel.imageURL}
-              title={panel.imageTitle}
-              panelState={panel.isActive}
-            />
-          );
-        })}
+    <div className="panel-container">
+      {panels.map((panel, index) => {
+        return (
+          <div
+            key={index}
+            className={panel.isActive ? "panel active" : "panel"}
+            style={{ backgroundImage: `url("${panel.imageURL}")` }}
+            onClick={updatePanels}
+          >
+            <Panel title={panel.imageTitle} />
+          </div>
+        );
+      })}
     </div>
   );
 };
