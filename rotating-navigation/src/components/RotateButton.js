@@ -3,14 +3,14 @@ import React from "react";
 // CSS Imports
 import "./css/RotateButton.css";
 
-const RotateButton = () => {
+const RotateButton = ({ openClick, closeClick }) => {
   return (
-    <div className="container">
+    <div className="circle-container">
       <div className="circle">
-        <button id="close">
+        <button id="close" onClick={closeClick}>
           <i className="fas fa-times"></i>
         </button>
-        <button id="open">
+        <button id="open" onClick={openClick}>
           <i className="fas fa-bars"></i>
         </button>
       </div>
