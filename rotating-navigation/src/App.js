@@ -7,24 +7,15 @@ import Article from "./components/Article";
 import Navigation from "./components/Navigation";
 
 const App = () => {
-  const [showNav, setShowNav] = useState(false);
-
-  const closeClick = () => {
-    setShowNav(true);
+  const [navState, setNavState] = useState(false);
+  const callback = (showNav) => {
+    setNavState(!showNav);
   };
-
-  const openClick = () => {
-    setShowNav(false);
-  };
-
-  useEffect(() => {}, [showNav]);
-
-  console.log(showNav);
 
   return (
     <div>
-      <div className={`container ${showNav ? "show-nav" : ""}`}>
-        <RotateButton openClick={openClick} closeClick={closeClick} />
+      <div className={`container ${navState ? "show-nav" : ""}`}>
+        <RotateButton parentCallback={callback} />
         <Article />
       </div>
       <Navigation />
